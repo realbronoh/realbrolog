@@ -29,8 +29,10 @@ class ArticleManager {
       const filePath = `${basePath}/${filename}`;
       const content = fs.readFileSync(filePath, 'utf8');
       const matterResult = matter(content);
+      const title = filename.replace(MARKDOWN_EXT, '');
       const article: Article = {
-        title: filename.replace(MARKDOWN_EXT, ''),
+        slug: title.replaceAll(/\s+/g, '_'),
+        title,
         content: matterResult.content,
         id: matterResult.data.id?.toString() ?? DUMMY_ARTICLE_ID,
         // TODO: adjust KST using luxon
@@ -42,8 +44,11 @@ class ArticleManager {
       };
       return article;
     });
-    console.log(articles);
     return articles;
+  };
+
+  public getArticleBySlug = (slug: string) => {
+    return this._articles.find((article) => article.slug === slug);
   };
 }
 
