@@ -1,5 +1,5 @@
+import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { getArticleManager } from '@/utils/articleManager';
-import Markdown from 'markdown-to-jsx';
 
 export const generateStaticParams = async () => {
   const articles = getArticleManager().articles;
@@ -41,7 +41,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   return (
     <main>
       <article>
-        <Markdown>{article.content}</Markdown>
+        <StyledMarkdown markdown={article.content} />
       </article>
     </main>
   );
