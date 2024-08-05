@@ -1,7 +1,6 @@
 import React from 'react';
-import LogoIcon from '../images/book-icon.svg';
+import LogoIcon from '../images/book_icon.svg';
 import MenuIcon from '../images/burgerbar.svg';
-
 import Link from 'next/link';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
