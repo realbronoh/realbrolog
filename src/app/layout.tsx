@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,13 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const header = (
-    <header>
-      <Link href="/">
-        <h1>header</h1>
-      </Link>
-    </header>
-  );
   const footer = (
     <footer>
       <p>footer</p>
@@ -30,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {header}
+        <Navbar />
         {children}
         {footer}
       </body>
