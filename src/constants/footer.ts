@@ -1,6 +1,6 @@
-import GITHUB_LOGO from '../images/github.svg';
-import LINKEDIN_LOGO from '../images/linkedin.svg';
-// import X_LOGO from '../images/x_logo.svg';
+import GITHUB_LOGO from '../../static/images/github.svg';
+import LINKEDIN_LOGO from '../../static/images/linkedin.svg';
+// import X_LOGO from '../../static/images/x_logo.svg';
 
 export const SOCIAL_ITEMS = [
   {

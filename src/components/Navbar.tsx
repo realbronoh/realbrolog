@@ -1,6 +1,6 @@
 import React from 'react';
-import LogoIcon from '../images/book_icon.svg';
-import MenuIcon from '../images/burgerbar.svg';
+// import MenuIcon from '../../images/burgerbar.svg';
+import MenuIcon from '../../static/images/burgerbar.svg';
 import Link from 'next/link';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -22,14 +22,7 @@ const Navbar = () => {
 const MainLogo = () => {
   return (
     <Link href="/" className="flex items-center gap-2" prefetch={false}>
-      <Image
-        className="w-6 h-6"
-        src={LogoIcon}
-        alt="realbrolog"
-        width="24"
-        height="24"
-      />
-      <span className="text-lg font-semibold">Realbrolog</span>
+      <span className="text-xl font-semibold italic">Realbrolog</span>
     </Link>
   );
 };

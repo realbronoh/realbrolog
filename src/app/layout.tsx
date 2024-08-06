@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Center from '@/components/Center';
-
-const inter = Inter({ subsets: ['latin'] });
+import { pretendard } from '@/utils/font';
 
 export const metadata: Metadata = {
   title: 'realbrolog',
@@ -19,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={pretendard.className}>
         <Navbar />
         <Center>{children}</Center>
         <Footer />
