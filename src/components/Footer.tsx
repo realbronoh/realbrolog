@@ -7,7 +7,7 @@ import { SOCIAL_ITEMS } from '@/constants/footer';
 const Footer = () => {
   return (
     <footer className="bg-muted py-12 border-t">
-      <div className="max-w-5xl flex flex-col-reverse items-center justify-between px-12 gap-8 md:flex-row md:items-start">
+      <div className="mx-auto max-w-5xl flex flex-col-reverse items-center justify-between px-12 gap-8 md:flex-row md:items-start">
         <MainLogo />
         <SubTabs />
       </div>
