@@ -1,4 +1,5 @@
 'use client';
+
 import { Article } from '@/types/article';
 import React, { useState } from 'react';
 import ArticlesPaginationHandle from './ArticlesPagination';

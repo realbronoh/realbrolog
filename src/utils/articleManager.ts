@@ -1,12 +1,13 @@
 import {
   ARTICLES_DIR,
-  DUMMY_ARTICLE_CREATED,
   DUMMY_ARTICLE_ID,
   MARKDOWN_EXT,
 } from '@/constants/article';
+import { KST_TIME_OFFSET_HOUR, KST_ZONE } from '@/constants/misc';
 import { Article } from '@/types/article';
 import fs from 'fs';
 import matter from 'gray-matter';
+import { DateTime } from 'luxon';
 
 class ArticleManager {
   private _articles: Article[] = [];
@@ -30,16 +31,14 @@ class ArticleManager {
       const content = fs.readFileSync(filePath, 'utf8');
       const matterResult = matter(content);
       const title = matterResult.data.title ?? '';
+      const created = this.handleCreated(matterResult.data.created);
       const article: Article = {
         slug: title.replaceAll(/\s+/g, '_'),
         title,
         subtitle: matterResult.data.subtitle ?? '',
         content: matterResult.content,
         id: matterResult.data.id?.toString() ?? DUMMY_ARTICLE_ID,
-        // TODO: adjust KST using luxon
-        created: matterResult.data.created
-          ? new Date(matterResult.data.created)
-          : DUMMY_ARTICLE_CREATED,
+        created,
         tags: matterResult.data.tags ?? [],
         category: matterResult.data.category,
       };
@@ -50,6 +49,22 @@ class ArticleManager {
 
   public getArticleBySlug = (slug: string) => {
     return this._articles.find((article) => article.slug === slug);
+  };
+
+  private handleCreated = (created: string | Date | undefined): Date => {
+    if (typeof created === 'string') {
+      return DateTime.fromISO(created, { zone: KST_ZONE }).toJSDate();
+    }
+    if (created instanceof Date) {
+      return (
+        DateTime.fromJSDate(created)
+          // imported Date by gray-matter is utc despite of KST format
+          .minus({ hours: KST_TIME_OFFSET_HOUR })
+          .setZone(KST_ZONE)
+          .toJSDate()
+      );
+    }
+    return DateTime.now().setZone(KST_ZONE).toJSDate();
   };
 }
 
