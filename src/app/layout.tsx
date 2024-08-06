@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={pretendard.className}>
         <Navbar />
-        <Center>{children}</Center>
+        <Center className="prose">{children}</Center>
         <Footer />
       </body>
     </html>

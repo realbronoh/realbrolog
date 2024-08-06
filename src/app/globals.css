@@ -69,7 +69,4 @@
 }
 
 @layer utilities {
-  :not(pre) > code {
-    @apply bg-gray-200 rounded p-0.5 font-mono text-sm text-red-600;
-  }
 }
