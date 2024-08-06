@@ -4,7 +4,7 @@ import React from 'react';
 
 const AboutPage = () => {
   return (
-    <main>
+    <main className="prose">
       <section>
         <h1>
           Hello 🙌

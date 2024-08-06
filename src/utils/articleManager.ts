@@ -29,10 +29,11 @@ class ArticleManager {
       const filePath = `${basePath}/${filename}`;
       const content = fs.readFileSync(filePath, 'utf8');
       const matterResult = matter(content);
-      const title = filename.replace(MARKDOWN_EXT, '');
+      const title = matterResult.data.title ?? '';
       const article: Article = {
         slug: title.replaceAll(/\s+/g, '_'),
         title,
+        subtitle: matterResult.data.subtitle ?? '',
         content: matterResult.content,
         id: matterResult.data.id?.toString() ?? DUMMY_ARTICLE_ID,
         // TODO: adjust KST using luxon

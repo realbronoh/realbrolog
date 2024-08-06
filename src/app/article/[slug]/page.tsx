@@ -39,7 +39,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   }
 
   return (
-    <main>
+    <main className="prose">
       <article className="prose">
         <StyledMarkdown markdown={article.content} />
       </article>
