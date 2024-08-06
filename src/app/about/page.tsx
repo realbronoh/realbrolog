@@ -9,11 +9,12 @@ const AboutPage = () => {
         <h1>
           Hello 🙌
           <br />
-          I'm realbro
+          {"I'm realbro"}
         </h1>
 
         <p>
-          I'm a <span className="text-sky-700">indie programmer.</span>
+          {"I'm a "}
+          <span className="text-sky-700">indie programmer.</span>
           <br />I worked as a{' '}
           <span className="text-sky-700">
             software developer for 2.5 years
@@ -25,8 +26,9 @@ const AboutPage = () => {
           , an AI startup in South Korea 🇰🇷
         </p>
         <p>
-          Recently, I've been making small programs, reading books and articles,
-          and studying math.
+          {
+            "Recently, I've been making small programs, reading books and articles, and studying math."
+          }
           <br />I like reading books📚, especially about human misjudgments.
         </p>
         <p>

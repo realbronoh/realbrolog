@@ -13,7 +13,6 @@ export const generateStaticParams = async () => {
 
 export const generateMetadata = async ({
   params,
-  searchParams,
 }: {
   params: any;
   searchParams: any;
