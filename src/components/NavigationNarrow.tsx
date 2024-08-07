@@ -1,6 +1,6 @@
 'use client';
 
-import MenuIcon from '../../static/images/burgerbar.svg';
+import MenuIcon from 'static/images/burgerbar.svg';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
