@@ -18,7 +18,7 @@ const AboutPage = () => {
         </h1>
 
         <p>
-          I'm a<span className="text-sky-700">indie programmer.</span>
+          I'm a <span className="text-sky-700">indie programmer.</span>
           <br />I worked as a{' '}
           <span className="text-sky-700">
             software developer for 2.5 years
