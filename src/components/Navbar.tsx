@@ -36,7 +36,7 @@ const NavigationWide = () => {
           <Link
             key={`nav-wide-${name}`}
             href={href}
-            className="text-sm font-medium text-foreground hover:text-primary hover:bg-slate-100 transition-colors px-4 py-2 rounded-sm"
+            className="text-sm font-medium text-center text-foreground hover:underline transition-colors px-2 py-2 rounded-sm"
             prefetch={false}
           >
             {name}
