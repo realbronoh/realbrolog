@@ -47,7 +47,11 @@ class ArticleManager {
       };
       return article;
     });
-    return articles;
+
+    const sortedArticlesDesc = articles.sort(
+      (a, b) => b.created.getTime() - a.created.getTime(),
+    );
+    return sortedArticlesDesc;
   };
 
   public getArticleBySlug = (slug: string) => {
