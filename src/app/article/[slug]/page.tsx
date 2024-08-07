@@ -23,7 +23,7 @@ export const generateMetadata = async ({
 }) => {
   const id = (params.slug ?? '').replaceAll('_', ' ');
   return {
-    title: `realbrolog | ${id}`,
+    title: `realbrolog | Article ${id}`,
   };
 };
 

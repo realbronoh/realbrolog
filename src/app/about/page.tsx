@@ -2,6 +2,10 @@ import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
 import Link from 'next/link';
 import React from 'react';
 
+export const metadata = {
+  title: `realbrolog | About`,
+};
+
 const AboutPage = () => {
   return (
     <main className="prose-sm sm:prose">
