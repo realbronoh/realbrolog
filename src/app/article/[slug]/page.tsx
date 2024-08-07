@@ -1,6 +1,9 @@
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { Separator } from '@/components/ui/separator';
+import { Article } from '@/types/article';
 import { getArticleManager } from '@/utils/articleManager';
+import { calculateReadingTime } from '@/utils/misc';
+import { DateTime } from 'luxon';
 
 export const generateStaticParams = async () => {
   const articles = getArticleManager().articles;
@@ -40,12 +43,28 @@ const ArticlePage = (props: ArticlePageProps) => {
 
   return (
     <main className="prose-sm md:prose">
-      <h1>{article.title}</h1>
-      <Separator />
+      <ArticleHeader article={article} />
       <article>
         <StyledMarkdown markdown={article.content} />
       </article>
     </main>
+  );
+};
+
+const ArticleHeader = (props: { article: Article }) => {
+  const { title, content, created } = props.article;
+  const formattedDateString = DateTime.fromJSDate(created).toLocaleString({
+    dateStyle: 'medium',
+  });
+  const readingTimeMin = calculateReadingTime(content);
+  return (
+    <header>
+      <div className="text-sm mb-2">
+        {formattedDateString} • {readingTimeMin} min read
+      </div>
+      <h1>{title}</h1>
+      <Separator />
+    </header>
   );
 };
 
