@@ -1,11 +1,7 @@
 import React from 'react';
-// import MenuIcon from '../../images/burgerbar.svg';
-import MenuIcon from '../../static/images/burgerbar.svg';
 import Link from 'next/link';
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
+import NavigationNarrow from './NavigationNarrow';
 
 const Navbar = () => {
   return (
@@ -44,42 +40,6 @@ const NavigationWide = () => {
         );
       })}
     </nav>
-  );
-};
-
-const NavigationNarrow = () => {
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="md:hidden">
-          <Image
-            className="w-6 h-6"
-            src={MenuIcon}
-            alt="realbrolog"
-            width="24"
-            height="24"
-          />
-          <span className="sr-only">Toggle navigation</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="md:hidden w-full">
-        <nav className="py-4">
-          {NAVIGATION_ITEMS.map((item) => {
-            const { name, href } = item;
-            return (
-              <Link
-                key={`nav-narrow-${name}`}
-                href={href}
-                className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary hover:bg-slate-100 transition-colors p-4"
-                prefetch={false}
-              >
-                {name}
-              </Link>
-            );
-          })}
-        </nav>
-      </SheetContent>
-    </Sheet>
   );
 };
 
