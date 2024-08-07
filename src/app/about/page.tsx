@@ -32,7 +32,8 @@ const AboutPage = () => {
         <p>
           Recently, I've been making small programs, reading books and articles,
           and studying math.
-          <br />I like reading books📚, especially about human misjudgments.
+          <br />I like reading books📚, especially those about human
+          misjudgments.
         </p>
         <p>
           For more information, feel free to{' '}
