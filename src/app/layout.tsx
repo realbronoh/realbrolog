@@ -4,9 +4,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Center from '@/components/Center';
 import { pretendard } from '@/utils/font';
+import { REALBROLOG_NAME } from '@/constants/misc';
 
 export const metadata: Metadata = {
-  title: 'realbrolog',
+  title: REALBROLOG_NAME,
   description: 'blog of realbro',
 };
 

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
 import { SOCIAL_ITEMS } from '@/constants/footer';
+import { REALBROLOG_NAME } from '@/constants/misc';
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const MainLogo = () => {
   return (
     <div className="flex flex-col items-start gap-2 md:gap-4">
       <Link href="/" className="flex items-center gap-2" prefetch={false}>
-        <span className="font-semibold text-lg italic">Realbrolog</span>
+        <span className="font-semibold text-lg italic">{REALBROLOG_NAME}</span>
       </Link>
       <div>blog of realbro</div>
     </div>

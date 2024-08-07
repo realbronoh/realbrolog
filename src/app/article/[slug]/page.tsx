@@ -1,5 +1,6 @@
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { Separator } from '@/components/ui/separator';
+import { REALBROLOG_NAME } from '@/constants/misc';
 import { Article } from '@/types/article';
 import { getArticleManager } from '@/utils/articleManager';
 import { calculateReadingTime } from '@/utils/misc';
@@ -23,7 +24,7 @@ export const generateMetadata = async ({
 }) => {
   const id = (params.slug ?? '').replaceAll('_', ' ');
   return {
-    title: `realbrolog | Article ${id}`,
+    title: `${REALBROLOG_NAME} | Article ${id}`,
   };
 };
 

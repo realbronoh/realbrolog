@@ -1,9 +1,10 @@
+import { REALBROLOG_NAME } from '@/constants/misc';
 import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
 import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
-  title: `realbrolog | About`,
+  title: `${REALBROLOG_NAME} | About`,
 };
 
 const AboutPage = () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
 import NavigationNarrow from './NavigationNarrow';
+import { REALBROLOG_NAME } from '@/constants/misc';
 
 const Navbar = () => {
   return (
@@ -18,7 +19,7 @@ const Navbar = () => {
 const MainLogo = () => {
   return (
     <Link href="/" className="flex items-center gap-2" prefetch={false}>
-      <span className="text-xl font-semibold italic">Realbrolog</span>
+      <span className="text-xl font-semibold italic">{REALBROLOG_NAME}</span>
     </Link>
   );
 };

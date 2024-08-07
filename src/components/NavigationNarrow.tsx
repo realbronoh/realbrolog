@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
 import Link from 'next/link';
 import { useState } from 'react';
+import { REALBROLOG_NAME } from '@/constants/misc';
 
 const NavigationNarrow = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const NavigationNarrow = () => {
           <Image
             className="w-6 h-6"
             src={MenuIcon}
-            alt="realbrolog"
+            alt={REALBROLOG_NAME}
             width="24"
             height="24"
           />
