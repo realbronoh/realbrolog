@@ -9,7 +9,7 @@ import { NAVIGATION_ITEMS } from '@/constants/navbar';
 
 const Navbar = () => {
   return (
-    <header className="w-full bg-background border-b">
+    <header className=" sticky top-0 opacity-90 w-full bg-background border-b">
       <div className="container flex items-center justify-between h-16 px-4 md:px-6 max-w-3xl">
         <MainLogo />
         <NavigationWide />
