@@ -39,7 +39,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   }
 
   return (
-    <main className="prose-sm sm:prose">
+    <main className="prose-sm md:prose">
       <h1>{article.title}</h1>
       <Separator />
       <article>

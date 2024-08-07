@@ -75,6 +75,17 @@ const config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              'font-size': '2rem',
+              'line-height': 1.2,
+              'font-weight': 700,
+            },
+          },
+        },
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
