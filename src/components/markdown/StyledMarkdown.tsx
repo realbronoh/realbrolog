@@ -2,6 +2,7 @@ import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import StyledLink from '../StyledLink';
 
 const StyledMarkdown = (props: { markdown: string }) => {
   return (
@@ -10,6 +11,9 @@ const StyledMarkdown = (props: { markdown: string }) => {
         overrides: {
           pre: {
             component: MarkdownPreBlock,
+          },
+          a: {
+            component: StyledLink,
           },
         },
       }}

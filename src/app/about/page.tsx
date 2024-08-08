@@ -1,6 +1,6 @@
+import StyledLink from '@/components/StyledLink';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
-import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
@@ -23,11 +23,8 @@ const AboutPage = () => {
           <span className="text-sky-700">
             software developer for 2.5 years
           </span>{' '}
-          at{' '}
-          <Link href="https://vrew.ai/en/" target="_blank">
-            Voyagerx Inc.
-          </Link>
-          , an AI startup in South Korea 🇰🇷
+          at <StyledLink href="https://vrew.ai/en/">Voyagerx Inc</StyledLink>. ,
+          an AI startup in South Korea 🇰🇷
         </p>
         <p>
           Recently, I've been making small programs, reading books and articles,
@@ -37,7 +34,7 @@ const AboutPage = () => {
         </p>
         <p>
           For more information, feel free to{' '}
-          <Link href={LINKEDIN_PROFILE_URL}>contact me.</Link>
+          <StyledLink href={LINKEDIN_PROFILE_URL}>contact me</StyledLink>.
         </p>
       </section>
     </main>

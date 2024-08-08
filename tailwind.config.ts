@@ -86,6 +86,12 @@ const config = {
             h2: {
               'font-size': '1.4rem',
             },
+            a: {
+              'text-decoration': 'none',
+              '&:hover': {
+                'text-decoration': 'underline',
+              },
+            },
           },
         },
       },
