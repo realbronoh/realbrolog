@@ -43,7 +43,7 @@ const ArticlePage = (props: ArticlePageProps) => {
   }
 
   return (
-    <main className="prose-sm md:prose">
+    <main className="prose">
       <ArticleHeader article={article} />
       <article>
         <StyledMarkdown markdown={article.content} />
@@ -63,7 +63,7 @@ const ArticleHeader = (props: { article: Article }) => {
       <div className="text-sm mb-2">
         {formattedDateString} • {readingTimeMin} min read
       </div>
-      <h1>{title}</h1>
+      <h1 className="text-xl sm:text-2xl">{title}</h1>
       <Separator />
     </header>
   );

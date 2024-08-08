@@ -79,9 +79,12 @@ const config = {
         DEFAULT: {
           css: {
             h1: {
-              'font-size': '2rem',
-              'line-height': 1.2,
+              'font-size': '1.6rem',
+              'line-height': 1.5,
               'font-weight': 700,
+            },
+            h2: {
+              'font-size': '1.4rem',
             },
           },
         },

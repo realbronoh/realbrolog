@@ -9,7 +9,7 @@ export const metadata = {
 
 const AboutPage = () => {
   return (
-    <main className="prose-sm sm:prose">
+    <main className="prose">
       <section>
         <h1>
           Hello 🙌
