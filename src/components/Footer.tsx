@@ -37,7 +37,7 @@ const SubTabs = () => {
 
 const Pages = () => {
   return (
-    <div className="grid gap-2 sm:col-span-2 md:col-span-1">
+    <div className="flex flex-col gap-2 items-center sm:items-start ">
       <h3 className="font-medium">Pages</h3>
       {NAVIGATION_ITEMS.map((item) => {
         const { name, href } = item;
@@ -58,7 +58,7 @@ const Pages = () => {
 
 const Social = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center sm:items-start">
       <h3 className="font-medium">Social</h3>
       <div className="flex gap-2 xs:flex-col">
         {SOCIAL_ITEMS.map((item) => {
