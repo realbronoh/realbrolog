@@ -1,19 +1,31 @@
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { Separator } from '@/components/ui/separator';
+import { LOCALES } from '@/constants/intl';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { Article } from '@/types/article';
 import { getArticleManager } from '@/utils/articleManager';
 import { calculateReadingTime } from '@/utils/misc';
 import { DateTime } from 'luxon';
+import { unstable_setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
 export const generateStaticParams = async () => {
-  const articles = getArticleManager().articles;
+  const paths: {
+    locale: string;
+    slug: string;
+  }[] = [];
 
-  return articles.map((article) => {
-    return {
-      slug: article.slug,
-    };
+  LOCALES.forEach((locale) => {
+    const articles = getArticleManager().getArticleByLocale(locale);
+    articles.forEach((article) => {
+      paths.push({
+        locale,
+        slug: article.slug,
+      });
+    });
   });
+
+  return paths;
 };
 
 export const generateMetadata = async ({
@@ -31,15 +43,18 @@ export const generateMetadata = async ({
 interface ArticlePageProps {
   params: {
     slug: string;
+    locale: string;
   };
 }
 
 const ArticlePage = (props: ArticlePageProps) => {
-  const { slug } = props.params;
+  const { slug, locale } = props.params;
   const article = getArticleManager().getArticleBySlug(slug);
+  unstable_setRequestLocale(locale);
 
   if (article === undefined) {
-    return <div>404</div>;
+    // TODO: alert and redirect to /articles
+    return notFound();
   }
 
   return (

@@ -6,8 +6,7 @@ import Center from '@/components/Center';
 import { pretendard } from '@/utils/font';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import GA4 from '@/components/seo/GoogleAnalytics4';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from '@/constants/intl';
 
 export const metadata: Metadata = {
@@ -28,7 +27,7 @@ const LocaleLayout = async ({
   children: React.ReactNode;
   params: { locale: string };
 }>) => {
-  const messages = await getMessages();
+  unstable_setRequestLocale(locale);
   return (
     <html lang={locale}>
       <head>
@@ -36,11 +35,9 @@ const LocaleLayout = async ({
         <GA4 />
       </head>
       <body className={pretendard.className}>
-        <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <Center>{children}</Center>
-          <Footer />
-        </NextIntlClientProvider>
+        <Navbar />
+        <Center>{children}</Center>
+        <Footer />
       </body>
     </html>
   );

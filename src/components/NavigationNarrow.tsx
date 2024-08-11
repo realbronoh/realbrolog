@@ -5,9 +5,9 @@ import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
-import Link from 'next/link';
 import { useState } from 'react';
 import { REALBROLOG_NAME } from '@/constants/misc';
+import { Link } from '@/navigation';
 
 const NavigationNarrow = () => {
   const [open, setOpen] = useState<boolean>(false);

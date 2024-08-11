@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { Article } from '@/types/article';
 import { DateTime } from 'luxon';
 import { calculateReadingTime } from '@/utils/misc';
+import { Link } from '@/navigation';
 
 const ArticleCard = (props: { article: Article }) => {
   const { article } = props;
@@ -13,7 +13,7 @@ const ArticleCard = (props: { article: Article }) => {
   ).toLocaleString({ dateStyle: 'medium' });
   const readingTimeMin = calculateReadingTime(article.content);
   return (
-    <Link href={`/${article.lang}/article/${article.slug}`} prefetch={false}>
+    <Link href={`/article/${article.slug}`} prefetch={false}>
       <div className="flex flex-col gap-2 md:gap-4 p-2 md:p-4 rounded-lg transition-shadow">
         <h3 className="md:text-lg font-medium group-hover:underline">
           {article.title}

@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
 import NavigationNarrow from './NavigationNarrow';
 import { REALBROLOG_NAME } from '@/constants/misc';
+import { Link } from '@/navigation';
 
 const Navbar = () => {
   return (

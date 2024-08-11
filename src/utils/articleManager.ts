@@ -20,6 +20,10 @@ class ArticleManager {
     return this._articles;
   }
 
+  public getArticleByLocale = (locale: string) => {
+    return this._articles.filter(({ lang }) => locale === lang);
+  };
+
   private loadArticles = () => {
     const basePath = ARTICLES_DIR;
     const languages = fs.readdirSync(basePath);

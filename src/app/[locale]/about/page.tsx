@@ -1,19 +1,24 @@
 import StyledLink from '@/components/StyledLink';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
-import { useTranslations } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import React from 'react';
+
+interface AboutPageProps {
+  params: {
+    locale: string;
+  };
+}
 
 export const metadata = {
   title: `${REALBROLOG_NAME} | About`,
 };
 
-const AboutPage = () => {
-  const t = useTranslations('about');
+const AboutPage = ({ params: { locale } }: AboutPageProps) => {
+  unstable_setRequestLocale(locale);
   return (
     <main className="prose">
       <section>
-        <h1>{t('title')}</h1>
         <h1>
           Hello 🙌
           <br />

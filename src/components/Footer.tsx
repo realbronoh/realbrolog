@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { NAVIGATION_ITEMS } from '@/constants/navbar';
 import { SOCIAL_ITEMS } from '@/constants/footer';
 import { REALBROLOG_NAME } from '@/constants/misc';
+import { Link } from '@/navigation';
 
 const Footer = () => {
   return (
