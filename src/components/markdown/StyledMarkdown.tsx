@@ -15,6 +15,9 @@ const StyledMarkdown = (props: { markdown: string }) => {
           a: {
             component: StyledLink,
           },
+          img: {
+            component: StyledImg,
+          },
         },
       }}
     >
@@ -59,6 +62,15 @@ export const MarkdownCodeBlock = ({
     >
       {children}
     </SyntaxHighlighter>
+  );
+};
+
+const StyledImg = ({ src, alt }: { src: string; alt: string }) => {
+  return (
+    <div className="flex flex-col items-center w-full sm:w-4/5 mx-auto">
+      <img src={src} alt={alt} className="mb-0" />
+      <span className="text-sm text-gray-600 italic">{alt}</span>
+    </div>
   );
 };
 
