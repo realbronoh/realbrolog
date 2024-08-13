@@ -6,7 +6,7 @@ import ArticlesPaginationHandle from './ArticlesPagination';
 import ArticleCard from './ArticleCard';
 import { Separator } from '../ui/separator';
 
-const DEFAULT_NUM_ARTICLES_PER_PAGE = 10;
+const DEFAULT_NUM_ARTICLES_PER_PAGE = 5;
 
 const ArticlesView = (props: { articles: Article[] }) => {
   const { articles } = props;
