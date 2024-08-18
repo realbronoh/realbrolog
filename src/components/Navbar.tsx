@@ -3,6 +3,7 @@ import { NAVIGATION_ITEMS } from '@/constants/navbar';
 import NavigationNarrow from './NavigationNarrow';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { Link } from '@/navigation';
+import LanguageSelect from './LanguageSelect';
 
 const Navbar = () => {
   return (
@@ -40,6 +41,7 @@ const NavigationWide = () => {
           </Link>
         );
       })}
+      <LanguageSelect />
     </nav>
   );
 };
