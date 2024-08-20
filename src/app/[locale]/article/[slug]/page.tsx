@@ -1,3 +1,4 @@
+import TagBadge from '@/components/articles/TagBadge';
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { Separator } from '@/components/ui/separator';
 import { LOCALES } from '@/constants/intl';
@@ -75,12 +76,25 @@ const ArticleHeader = (props: { article: Article }) => {
   const readingTimeMin = calculateReadingTime(content);
   return (
     <header>
-      <div className="text-sm mb-2">
-        {formattedDateString} • {readingTimeMin} min read
+      <div className="flex justify-between gap-2 text-sm mb-2">
+        <div>
+          {formattedDateString} • {readingTimeMin} min read
+        </div>
+        <Tags article={props.article} />
       </div>
       <h1 className="text-xl sm:text-2xl">{title}</h1>
       <Separator />
     </header>
+  );
+};
+
+const Tags = ({ article }: { article: Article }) => {
+  return (
+    <div className="flex gap-1">
+      {article.tags.map((tag) => (
+        <TagBadge tag={tag} key={`${article.id}-tag-${tag}`} />
+      ))}
+    </div>
   );
 };
 

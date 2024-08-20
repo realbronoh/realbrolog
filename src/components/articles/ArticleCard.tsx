@@ -5,6 +5,7 @@ import { Article } from '@/types/article';
 import { DateTime } from 'luxon';
 import { calculateReadingTime } from '@/utils/misc';
 import { Link } from '@/navigation';
+import TagBadge from './TagBadge';
 
 const ArticleCard = (props: { article: Article }) => {
   const { article } = props;
@@ -21,11 +22,24 @@ const ArticleCard = (props: { article: Article }) => {
         <p className="text-muted-foreground line-clamp-2 text-sm md:text-lg">
           {article.subtitle}
         </p>
-        <p className="flex gap-2 items-center text-xs">
-          {formattedDateString} • {readingTimeMin} min read
+        <p className="flex gap-4 items-center text-xs">
+          <span>
+            {formattedDateString} • {readingTimeMin} min read
+          </span>
+          <Tags article={article} />
         </p>
       </div>
     </Link>
+  );
+};
+
+const Tags = ({ article }: { article: Article }) => {
+  return (
+    <div className="flex gap-0.5">
+      {article.tags.map((tag) => (
+        <TagBadge tag={tag} key={`${article.id}-tag-${tag}`} />
+      ))}
+    </div>
   );
 };
 
