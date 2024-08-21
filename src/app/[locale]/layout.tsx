@@ -8,6 +8,7 @@ import { REALBROLOG_NAME } from '@/constants/misc';
 import GA4 from '@/components/seo/GoogleAnalytics4';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from '@/constants/intl';
+import GoogleSearch from '@/components/seo/GoogleSearch';
 
 export const metadata: Metadata = {
   title: REALBROLOG_NAME,
@@ -33,6 +34,7 @@ const LocaleLayout = async ({
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <GA4 />
+        <GoogleSearch />
       </head>
       <body className={pretendard.className}>
         <Navbar />
