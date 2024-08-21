@@ -1,15 +1,15 @@
 import { redirect } from '@/navigation';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
-interface HomePageProps {
+interface RootPageProps {
   params: {
     locale: string;
   };
 }
 
-const Home = ({ params: { locale } }: HomePageProps) => {
+const RootPage = ({ params: { locale } }: RootPageProps) => {
   unstable_setRequestLocale(locale);
-  return redirect('/about');
+  return redirect('/home');
 };
 
-export default Home;
+export default RootPage;

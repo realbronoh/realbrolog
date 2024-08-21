@@ -4,7 +4,7 @@ import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
-interface AboutPageProps {
+interface HomePageProps {
   params: {
     locale: string;
   };
@@ -14,7 +14,7 @@ export const metadata = {
   title: `${REALBROLOG_NAME} | About`,
 };
 
-const AboutPage = ({ params: { locale } }: AboutPageProps) => {
+const HomePage = ({ params: { locale } }: HomePageProps) => {
   unstable_setRequestLocale(locale);
   return (
     <main className="prose">
@@ -49,4 +49,4 @@ const AboutPage = ({ params: { locale } }: AboutPageProps) => {
   );
 };
 
-export default AboutPage;
+export default HomePage;
