@@ -32,12 +32,15 @@ class ArticleManager {
       const matterResult = matter(content);
       const title = matterResult.data.title ?? '';
       const created = this.handleCreated(matterResult.data.created);
+      const id =
+        (matterResult.data.id as string | undefined)?.toString() ??
+        DUMMY_ARTICLE_ID;
       const article: Article = {
-        slug: title.replaceAll(/\s+/g, '_'),
+        id,
+        slug: id,
         title,
         subtitle: matterResult.data.subtitle ?? '',
         content: matterResult.content,
-        id: matterResult.data.id?.toString() ?? DUMMY_ARTICLE_ID,
         created,
         tags: matterResult.data.tags ?? [],
         category: matterResult.data.category,

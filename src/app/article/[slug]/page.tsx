@@ -1,4 +1,5 @@
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
+import { Separator } from '@/components/ui/separator';
 import { getArticleManager } from '@/utils/articleManager';
 
 export const generateStaticParams = async () => {
@@ -39,6 +40,8 @@ const ArticlePage = (props: ArticlePageProps) => {
 
   return (
     <main className="prose-sm sm:prose">
+      <h1>{article.title}</h1>
+      <Separator />
       <article>
         <StyledMarkdown markdown={article.content} />
       </article>
