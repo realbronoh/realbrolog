@@ -31,7 +31,10 @@ class ArticleManager {
 
   private loadArticles = () => {
     const basePath = ARTICLES_DIR;
-    const languages = fs.readdirSync(basePath);
+    const languages = fs.readdirSync(basePath).filter((item) => {
+      // languages are directory.
+      return fs.statSync(path.join(basePath, item)).isDirectory();
+    });
 
     const loadedArticles: Article[] = [];
     for (const lang of languages) {

@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "yarn prepare-posts",
     "build": "next build",
     "start": "next start",
+    "prepare-posts": "bash ./build_scripts/fetch_posts.sh",
     "lint": "next lint"
   },
   "dependencies": {
