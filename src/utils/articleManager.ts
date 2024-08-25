@@ -13,44 +13,51 @@ class ArticleManager {
   private _articles: Article[] = [];
 
   constructor() {
-    this._articles = this.getArticleMetaData();
+    this._articles = this.loadArticles();
   }
 
   public get articles() {
     return this._articles;
   }
 
-  private getArticleMetaData = () => {
+  private loadArticles = () => {
     const basePath = ARTICLES_DIR;
-    const dir = `${basePath}/`;
-    const files = fs.readdirSync(dir);
-    const markdownFiles = files.filter((file) => file.endsWith(MARKDOWN_EXT));
+    const languages = fs.readdirSync(basePath);
 
-    const articles = markdownFiles.map((filename) => {
-      const filePath = `${basePath}/${filename}`;
-      const content = fs.readFileSync(filePath, 'utf8');
-      const matterResult = matter(content);
-      const title = matterResult.data.title ?? '';
-      const created = this.handleCreated(matterResult.data.created);
-      const id =
-        (matterResult.data.id as string | undefined)?.toString() ??
-        DUMMY_ARTICLE_ID;
-      const article: Article = {
-        id,
-        slug: id,
-        title,
-        subtitle: matterResult.data.subtitle ?? '',
-        content: matterResult.content,
-        created,
-        tags: matterResult.data.tags ?? [],
-        category: matterResult.data.category,
-      };
-      return article;
-    });
+    const loadedArticles: Article[] = [];
+    for (const lang of languages) {
+      const files = fs.readdirSync(`${basePath}/${lang}`);
+      const markdownFiles = files.filter((file) => file.endsWith(MARKDOWN_EXT));
 
-    const sortedArticlesDesc = articles.sort(
+      markdownFiles.forEach((filename) => {
+        const filePath = `${basePath}/${lang}/${filename}`;
+        const content = fs.readFileSync(filePath, 'utf8');
+        const matterResult = matter(content);
+        const title = matterResult.data.title ?? '';
+        const created = this.handleCreated(matterResult.data.created);
+        const id =
+          (matterResult.data.id as string | undefined)?.toString() ??
+          DUMMY_ARTICLE_ID;
+        const article: Article = {
+          lang,
+          id,
+          slug: id,
+          title,
+          subtitle: matterResult.data.subtitle ?? '',
+          content: matterResult.content,
+          created,
+          tags: matterResult.data.tags ?? [],
+          category: matterResult.data.category,
+        };
+
+        loadedArticles.push(article);
+      });
+    }
+
+    const sortedArticlesDesc = loadedArticles.sort(
       (a, b) => b.created.getTime() - a.created.getTime(),
     );
+
     return sortedArticlesDesc;
   };
 

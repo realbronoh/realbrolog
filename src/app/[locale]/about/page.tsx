@@ -1,6 +1,7 @@
 import StyledLink from '@/components/StyledLink';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 export const metadata = {
@@ -8,9 +9,11 @@ export const metadata = {
 };
 
 const AboutPage = () => {
+  const t = useTranslations('about');
   return (
     <main className="prose">
       <section>
+        <h1>{t('title')}</h1>
         <h1>
           Hello 🙌
           <br />

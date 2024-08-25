@@ -20,6 +20,7 @@
     "luxon": "^3.5.0",
     "markdown-to-jsx": "^7.4.7",
     "next": "14.2.5",
+    "next-intl": "^3.17.2",
     "react": "^18",
     "react-dom": "^18",
     "react-syntax-highlighter": "^15.5.0",
