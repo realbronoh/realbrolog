@@ -1,14 +1,14 @@
-import TagBadge from '@/components/articles/TagBadge';
+import TagBadge from '@/components/posts/TagBadge';
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { Separator } from '@/components/ui/separator';
 import { LOCALES } from '@/constants/intl';
 import { REALBROLOG_NAME } from '@/constants/misc';
-import { Article } from '@/types/article';
-import { getArticleManager } from '@/utils/articleManager';
+import { Post } from '@/types/post';
 import { calculateReadingTime } from '@/utils/misc';
 import { DateTime } from 'luxon';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { getPostManager } from '@/utils/postManager';
 
 export const generateStaticParams = async () => {
   const paths: {
@@ -17,11 +17,11 @@ export const generateStaticParams = async () => {
   }[] = [];
 
   LOCALES.forEach((locale) => {
-    const articles = getArticleManager().getArticleByLocale(locale);
-    articles.forEach((article) => {
+    const posts = getPostManager().getPostByLocale(locale);
+    posts.forEach((post) => {
       paths.push({
         locale,
-        slug: article.slug,
+        slug: post.slug,
       });
     });
   });
@@ -37,39 +37,39 @@ export const generateMetadata = async ({
 }) => {
   const id = (params.slug ?? '').replaceAll('_', ' ');
   return {
-    title: `${REALBROLOG_NAME} | Article ${id}`,
+    title: `${REALBROLOG_NAME} | Post ${id}`,
   };
 };
 
-interface ArticlePageProps {
+interface PostPageProps {
   params: {
     slug: string;
     locale: string;
   };
 }
 
-const ArticlePage = (props: ArticlePageProps) => {
+const PostPage = (props: PostPageProps) => {
   const { slug, locale } = props.params;
-  const article = getArticleManager().getArticleBySlug(slug);
+  const post = getPostManager().getPostBySlug(slug);
   unstable_setRequestLocale(locale);
 
-  if (article === undefined) {
-    // TODO: alert and redirect to /articles
+  if (post === undefined) {
+    // TODO: alert and redirect to /posts
     return notFound();
   }
 
   return (
     <main className="prose">
-      <ArticleHeader article={article} />
+      <PostHeader post={post} />
       <article>
-        <StyledMarkdown markdown={article.content} />
+        <StyledMarkdown markdown={post.content} />
       </article>
     </main>
   );
 };
 
-const ArticleHeader = (props: { article: Article }) => {
-  const { title, content, created } = props.article;
+const PostHeader = (props: { post: Post }) => {
+  const { title, content, created } = props.post;
   const formattedDateString = DateTime.fromJSDate(created).toLocaleString({
     dateStyle: 'medium',
   });
@@ -80,7 +80,7 @@ const ArticleHeader = (props: { article: Article }) => {
         <div>
           {formattedDateString} • {readingTimeMin} min read
         </div>
-        <Tags article={props.article} />
+        <Tags post={props.post} />
       </div>
       <h1 className="text-xl sm:text-2xl">{title}</h1>
       <Separator />
@@ -88,14 +88,14 @@ const ArticleHeader = (props: { article: Article }) => {
   );
 };
 
-const Tags = ({ article }: { article: Article }) => {
+const Tags = ({ post }: { post: Post }) => {
   return (
     <div className="flex gap-1">
-      {article.tags.map((tag) => (
-        <TagBadge tag={tag} key={`${article.id}-tag-${tag}`} />
+      {post.tags.map((tag) => (
+        <TagBadge tag={tag} key={`${post.id}-tag-${tag}`} />
       ))}
     </div>
   );
 };
 
-export default ArticlePage;
+export default PostPage;

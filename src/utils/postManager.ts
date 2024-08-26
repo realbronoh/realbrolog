@@ -1,68 +1,63 @@
-import {
-  ARTICLES_DIR,
-  DUMMY_ARTICLE_ID,
-  MARKDOWN_EXT,
-} from '@/constants/article';
 import { KST_TIME_OFFSET_HOUR, KST_ZONE } from '@/constants/misc';
-import { Article } from '@/types/article';
+import { Post } from '@/types/post';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { DateTime } from 'luxon';
+import { DUMMY_POST_ID, MARKDOWN_EXT, POSTS_DIR } from '@/constants/post';
 
-class ArticleManager {
-  private _articles: Article[] = [];
+class PostManager {
+  private _posts: Post[] = [];
 
   constructor() {
-    this._articles = this.loadArticles();
+    this._posts = this.loadPosts();
   }
 
-  public get articles() {
-    return this._articles;
+  public get posts() {
+    return this._posts;
   }
 
-  public getArticleByLocale = (locale: string) => {
-    return this._articles.filter(({ lang }) => locale === lang);
+  public getPostByLocale = (locale: string) => {
+    return this._posts.filter(({ lang }) => locale === lang);
   };
 
-  public getArticleBySlug = (slug: string) => {
-    return this._articles.find((article) => article.slug === slug);
+  public getPostBySlug = (slug: string) => {
+    return this._posts.find((post) => post.slug === slug);
   };
 
-  private loadArticles = () => {
-    const basePath = ARTICLES_DIR;
+  private loadPosts = () => {
+    const basePath = POSTS_DIR;
     const languages = fs.readdirSync(basePath).filter((item) => {
       // languages are directory.
       return fs.statSync(path.join(basePath, item)).isDirectory();
     });
 
-    const loadedArticles: Article[] = [];
+    const loadedPosts: Post[] = [];
     for (const lang of languages) {
       const basePathWithLang = `${basePath}/${lang}`;
       const markdownFiles = this.readMarkdownFilesRecursively(basePathWithLang);
 
       markdownFiles.forEach((filePath) => {
-        const article = this.loadArticle(filePath, lang);
-        loadedArticles.push(article);
+        const post = this.loadPost(filePath, lang);
+        loadedPosts.push(post);
       });
     }
 
-    const sortedArticlesDesc = loadedArticles.sort(
+    const sortedPostsDesc = loadedPosts.sort(
       (a, b) => b.created.getTime() - a.created.getTime(),
     );
 
-    return sortedArticlesDesc;
+    return sortedPostsDesc;
   };
 
-  private loadArticle = (filePath: string, lang: string) => {
+  private loadPost = (filePath: string, lang: string) => {
     const content = fs.readFileSync(filePath, 'utf8');
     const matterResult = matter(content);
     const title = matterResult.data.title ?? '';
     const created = this.handleCreated(matterResult.data.created);
     const id =
-      (matterResult.data.id as string | undefined)?.toString() ??
-      DUMMY_ARTICLE_ID;
-    const article: Article = {
+      (matterResult.data.id as string | undefined)?.toString() ?? DUMMY_POST_ID;
+    const post: Post = {
       lang,
       id,
       slug: id,
@@ -73,7 +68,7 @@ class ArticleManager {
       tags: matterResult.data.tags ?? [],
       category: matterResult.data.category,
     };
-    return article;
+    return post;
   };
 
   private readMarkdownFilesRecursively(dir: string): string[] {
@@ -113,11 +108,11 @@ class ArticleManager {
   };
 }
 
-let articleManager: ArticleManager | undefined = undefined;
+let postManager: PostManager | undefined = undefined;
 
-export const getArticleManager = () => {
-  if (articleManager === undefined) {
-    articleManager = new ArticleManager();
+export const getPostManager = () => {
+  if (postManager === undefined) {
+    postManager = new PostManager();
   }
-  return articleManager;
+  return postManager;
 };

@@ -1,11 +1,11 @@
 import React from 'react';
-import { getArticleManager } from '@/utils/articleManager';
-import ArticlesView from '@/components/articles/ArticlesView';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from '@/constants/intl';
+import PostsView from '@/components/posts/PostsView';
+import { getPostManager } from '@/utils/postManager';
 
-interface ArticlesPageProps {
+interface PostsPageProps {
   params: {
     locale: string;
   };
@@ -26,14 +26,14 @@ export const generateStaticParams = async () => {
 };
 
 export const metadata = {
-  title: `${REALBROLOG_NAME} | Articles`,
+  title: `${REALBROLOG_NAME} | Posts`,
 };
 
-const ArticlesPage = (props: ArticlesPageProps) => {
+const PostsPage = (props: PostsPageProps) => {
   const { locale } = props.params;
   unstable_setRequestLocale(locale);
-  const articles = getArticleManager().getArticleByLocale(locale);
-  return <ArticlesView articles={articles} />;
+  const posts = getPostManager().getPostByLocale(locale);
+  return <PostsView posts={posts} />;
 };
 
-export default ArticlesPage;
+export default PostsPage;

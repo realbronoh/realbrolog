@@ -4,8 +4,8 @@ export const NAVIGATION_ITEMS = [
     href: '/home',
   },
   {
-    name: 'Articles',
-    href: '/articles',
+    name: 'Posts',
+    href: '/posts',
   },
   // {
   //   name: 'About',

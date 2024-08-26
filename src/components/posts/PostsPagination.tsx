@@ -13,7 +13,7 @@ import React from 'react';
 
 const NUM_VISIBLE_PAGES = 5;
 
-const ArticlesPaginationHandle = (props: {
+const PostsPaginationHandle = (props: {
   currentPageIdx: number;
   setCurrentPageIdx: (idx: number) => void;
   numPages: number;
@@ -54,7 +54,7 @@ const ArticlesPaginationHandle = (props: {
           return (
             <PaginationItem
               onClick={() => setCurrentPageIdx(idx)}
-              key={`article-pagination-${idx}`}
+              key={`post-pagination-${idx}`}
             >
               <PaginationLink href="#" isActive={idx === currentPageIdx}>
                 {idx}
@@ -82,4 +82,4 @@ const ArticlesPaginationHandle = (props: {
   );
 };
 
-export default ArticlesPaginationHandle;
+export default PostsPaginationHandle;
