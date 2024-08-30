@@ -6,7 +6,6 @@ import {
   PaginationItem,
   PaginationPrevious,
   PaginationLink,
-  PaginationEllipsis,
   PaginationNext,
 } from '@/components/ui/pagination';
 import React from 'react';
@@ -39,14 +38,10 @@ const PostsPaginationHandle = (props: {
           <>
             <PaginationItem>
               <PaginationPrevious
-                href="#"
                 onClick={() =>
                   setCurrentPageIdx(beforeGroupIdx * NUM_VISIBLE_PAGES)
                 }
               />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
             </PaginationItem>
           </>
         )}
@@ -56,7 +51,7 @@ const PostsPaginationHandle = (props: {
               onClick={() => setCurrentPageIdx(idx)}
               key={`post-pagination-${idx}`}
             >
-              <PaginationLink href="#" isActive={idx === currentPageIdx}>
+              <PaginationLink isActive={idx === currentPageIdx}>
                 {idx}
               </PaginationLink>
             </PaginationItem>
@@ -65,11 +60,7 @@ const PostsPaginationHandle = (props: {
         {afterGroupExists && (
           <>
             <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
               <PaginationNext
-                href="#"
                 onClick={() =>
                   setCurrentPageIdx(afterGroupIdx * NUM_VISIBLE_PAGES)
                 }
