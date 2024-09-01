@@ -21,8 +21,8 @@ class PostManager {
     return this._posts.filter(({ lang }) => locale === lang);
   };
 
-  public getPostBySlug = (slug: string) => {
-    return this._posts.find((post) => post.slug === slug);
+  public getPostById = (id: string) => {
+    return this._posts.find((post) => post.id === id);
   };
 
   private loadPosts = () => {
@@ -60,7 +60,6 @@ class PostManager {
     const post: Post = {
       lang,
       id,
-      slug: id,
       title,
       subtitle: matterResult.data.subtitle ?? '',
       content: matterResult.content,

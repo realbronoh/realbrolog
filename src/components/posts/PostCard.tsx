@@ -14,7 +14,7 @@ const PostCard = (props: { post: Post }) => {
   });
   const readingTimeMin = calculateReadingTime(post.content);
   return (
-    <Link href={`/post/${post.slug}`} prefetch={false}>
+    <Link href={`/post/${post.id}`} prefetch={false}>
       <div className="flex flex-col gap-2 md:gap-4 p-2 md:p-4 rounded-lg transition-shadow">
         <h3 className="md:text-lg font-medium group-hover:underline">
           {post.title}

@@ -13,7 +13,7 @@ import { getPostManager } from '@/utils/postManager';
 export const generateStaticParams = async () => {
   const paths: {
     locale: string;
-    slug: string;
+    id: string;
   }[] = [];
 
   LOCALES.forEach((locale) => {
@@ -21,7 +21,7 @@ export const generateStaticParams = async () => {
     posts.forEach((post) => {
       paths.push({
         locale,
-        slug: post.slug,
+        id: post.id,
       });
     });
   });
@@ -35,7 +35,7 @@ export const generateMetadata = async ({
   params: any;
   searchParams: any;
 }) => {
-  const id = (params.slug ?? '').replaceAll('_', ' ');
+  const id = (params.id ?? '').replaceAll('_', ' ');
   return {
     title: `${REALBROLOG_NAME} | Post ${id}`,
   };
@@ -43,14 +43,14 @@ export const generateMetadata = async ({
 
 interface PostPageProps {
   params: {
-    slug: string;
+    id: string;
     locale: string;
   };
 }
 
 const PostPage = (props: PostPageProps) => {
-  const { slug, locale } = props.params;
-  const post = getPostManager().getPostBySlug(slug);
+  const { id, locale } = props.params;
+  const post = getPostManager().getPostById(id);
   unstable_setRequestLocale(locale);
 
   if (post === undefined) {

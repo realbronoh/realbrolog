@@ -42,7 +42,7 @@ const generatePostLinks = () => {
     const posts = getPostManager().getPostByLocale(locale);
     posts.forEach((post) => {
       const link = {
-        url: `${BASE_URL}/${locale}/post/${post.slug}`,
+        url: `${BASE_URL}/${locale}/post/${post.id}`,
         lastModified: new Date(),
       };
       links.push(link);

@@ -4,11 +4,11 @@ import { redirect } from '@/navigation';
 
 const ArticlePage = (props: {
   params: {
-    slug: string;
+    id: string;
   };
 }) => {
-  const { slug } = props.params;
-  return redirect(`/post/${slug}`);
+  const { id } = props.params;
+  return redirect(`/post/${id}`);
 };
 
 export default ArticlePage;
