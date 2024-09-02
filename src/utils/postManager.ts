@@ -61,7 +61,7 @@ class PostManager {
       lang,
       id,
       title,
-      subtitle: matterResult.data.subtitle ?? '',
+      description: matterResult.data.description ?? '',
       content: matterResult.content,
       created,
       tags: matterResult.data.tags ?? [],

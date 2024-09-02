@@ -20,7 +20,8 @@ const PostCard = (props: { post: Post }) => {
           {post.title}
         </h3>
         <p className="text-muted-foreground line-clamp-2 text-sm md:text-lg">
-          {post.subtitle}
+          {/* todo: cut or make ellipsis over 2 line. */}
+          {post.description}
         </p>
         <p className="flex gap-4 items-center text-xs">
           <span>

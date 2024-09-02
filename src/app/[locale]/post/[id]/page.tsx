@@ -14,6 +14,8 @@ export const generateStaticParams = async () => {
   const paths: {
     locale: string;
     id: string;
+    title: string;
+    description: string;
   }[] = [];
 
   LOCALES.forEach((locale) => {
@@ -22,6 +24,8 @@ export const generateStaticParams = async () => {
       paths.push({
         locale,
         id: post.id,
+        title: post.title,
+        description: post.description,
       });
     });
   });
@@ -35,9 +39,9 @@ export const generateMetadata = async ({
   params: any;
   searchParams: any;
 }) => {
-  const id = (params.id ?? '').replaceAll('_', ' ');
+  const title = params.title;
   return {
-    title: `${REALBROLOG_NAME} | Post ${id}`,
+    title: `${title} | ${REALBROLOG_NAME}`,
   };
 };
 
