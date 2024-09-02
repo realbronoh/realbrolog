@@ -1,7 +1,7 @@
 import TagBadge from '@/components/posts/TagBadge';
 import StyledMarkdown from '@/components/markdown/StyledMarkdown';
 import { Separator } from '@/components/ui/separator';
-import { LOCALES } from '@/constants/intl';
+import { LOCALE_ENGLISH, LOCALES } from '@/constants/intl';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { Post } from '@/types/post';
 import { calculateReadingTime } from '@/utils/misc';
@@ -9,13 +9,13 @@ import { DateTime } from 'luxon';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getPostManager } from '@/utils/postManager';
+import { Metadata } from 'next';
+import { REALBROLOG_BASE_URL } from '@/constants/seo';
 
 export const generateStaticParams = async () => {
   const paths: {
     locale: string;
     id: string;
-    title: string;
-    description: string;
   }[] = [];
 
   LOCALES.forEach((locale) => {
@@ -24,8 +24,6 @@ export const generateStaticParams = async () => {
       paths.push({
         locale,
         id: post.id,
-        title: post.title,
-        description: post.description,
       });
     });
   });
@@ -38,10 +36,38 @@ export const generateMetadata = async ({
 }: {
   params: any;
   searchParams: any;
-}) => {
-  const title = params.title;
+}): Promise<Metadata> => {
+  const { locale, id } = params;
+  const post = getPostManager().getPostById(id);
+  if (post === undefined) {
+    return {};
+  }
+  const { title, description, created, tags } = post;
+  console.log(params);
+  const postTitle = `${title} | ${REALBROLOG_NAME}`;
   return {
-    title: `${title} | ${REALBROLOG_NAME}`,
+    title: postTitle,
+    description,
+    authors: [{ name: 'realbro' }],
+    openGraph: {
+      title: postTitle,
+      description,
+      type: 'article',
+      url: `${REALBROLOG_BASE_URL}/${locale}/post/${id}`,
+      publishedTime: created.toISOString(),
+      authors: [`${REALBROLOG_BASE_URL}/${LOCALE_ENGLISH}/home`],
+      tags,
+    },
+    twitter: {
+      card: 'summary',
+      site: '@realbronoh',
+      creator: '@realbronoh',
+      title: postTitle,
+      description,
+    },
+    alternates: {
+      canonical: `${REALBROLOG_BASE_URL}/${locale}/post/${id}`,
+    },
   };
 };
 

@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from '@/constants/intl';
 import PostsView from '@/components/posts/PostsView';
 import { getPostManager } from '@/utils/postManager';
+import { Metadata } from 'next';
 
 interface PostsPageProps {
   params: {
@@ -25,8 +26,9 @@ export const generateStaticParams = async () => {
   return paths;
 };
 
-export const metadata = {
-  title: `${REALBROLOG_NAME} | Posts`,
+export const metadata: Metadata = {
+  title: `Posts | ${REALBROLOG_NAME}`,
+  description: 'Posts page of realbrolog',
 };
 
 const PostsPage = (props: PostsPageProps) => {

@@ -1,6 +1,9 @@
 import StyledLink from '@/components/StyledLink';
+import { LOCALE_ENGLISH, LOCALE_KOREAN } from '@/constants/intl';
 import { REALBROLOG_NAME } from '@/constants/misc';
 import { LINKEDIN_PROFILE_URL } from '@/constants/personalInfo';
+import { REALBROLOG_BASE_URL } from '@/constants/seo';
+import { Metadata } from 'next';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
@@ -10,8 +13,16 @@ interface HomePageProps {
   };
 }
 
-export const metadata = {
-  title: `${REALBROLOG_NAME} | About`,
+export const metadata: Metadata = {
+  title: `Home | ${REALBROLOG_NAME}`,
+  description: 'Home page of realbrolog',
+  alternates: {
+    canonical: `${REALBROLOG_BASE_URL}/${LOCALE_ENGLISH}/home`,
+    languages: {
+      [LOCALE_ENGLISH]: `${REALBROLOG_BASE_URL}/${LOCALE_ENGLISH}/home`,
+      [LOCALE_KOREAN]: `${REALBROLOG_BASE_URL}/${LOCALE_KOREAN}/home`,
+    },
+  },
 };
 
 const HomePage = ({ params: { locale } }: HomePageProps) => {

@@ -9,16 +9,38 @@ import GA4 from '@/components/seo/GoogleAnalytics4';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from '@/constants/intl';
 import GoogleSearch from '@/components/seo/GoogleSearch';
-
-export const metadata: Metadata = {
-  title: REALBROLOG_NAME,
-  description: 'blog of realbro',
-};
+import { REALBROLOG_BASE_URL } from '@/constants/seo';
 
 export const generateStaticParams = () => {
   return LOCALES.map((locale) => {
     locale;
   });
+};
+
+export const generateMetadata = async ({ params }: { params: any }) => {
+  const { locale } = params;
+  const metadata: Metadata = {
+    metadataBase: new URL(REALBROLOG_BASE_URL),
+    title: REALBROLOG_NAME,
+    description: 'blog of realbro',
+    openGraph: {
+      siteName: REALBROLOG_NAME,
+      type: 'website',
+      locale,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: 'index, follow',
+    },
+    applicationName: REALBROLOG_NAME,
+    appleWebApp: {
+      title: REALBROLOG_NAME,
+      statusBarStyle: 'default',
+      capable: true,
+    },
+  };
+  return metadata;
 };
 
 const LocaleLayout = async ({
