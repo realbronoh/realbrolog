@@ -8,16 +8,19 @@ import {
   PaginationLink,
   PaginationNext,
 } from '@/components/ui/pagination';
+import { useRouter } from '@/navigation';
+import { generateQueryString } from '@/utils/misc';
 import React from 'react';
 
 const NUM_VISIBLE_PAGES = 5;
 
 const PostsPaginationHandle = (props: {
   currentPageIdx: number;
-  setCurrentPageIdx: (idx: number) => void;
   numPages: number;
 }) => {
-  const { currentPageIdx, setCurrentPageIdx, numPages } = props;
+  const { currentPageIdx, numPages } = props;
+  const router = useRouter();
+
   const lastPageIdx = numPages - 1;
   const currentGroupIdx = Math.floor(currentPageIdx / NUM_VISIBLE_PAGES);
   const beforeGroupIdx = currentGroupIdx - 1;
@@ -39,7 +42,11 @@ const PostsPaginationHandle = (props: {
             <PaginationItem>
               <PaginationPrevious
                 onClick={() =>
-                  setCurrentPageIdx(beforeGroupIdx * NUM_VISIBLE_PAGES)
+                  router.push(
+                    `/posts?${generateQueryString({
+                      page: currentGroupIdx * NUM_VISIBLE_PAGES - 1,
+                    })}`,
+                  )
                 }
               />
             </PaginationItem>
@@ -48,7 +55,13 @@ const PostsPaginationHandle = (props: {
         {visibleIndices.map((idx) => {
           return (
             <PaginationItem
-              onClick={() => setCurrentPageIdx(idx)}
+              onClick={() =>
+                router.push(
+                  `/posts?${generateQueryString({
+                    page: idx,
+                  })}`,
+                )
+              }
               key={`post-pagination-${idx}`}
             >
               <PaginationLink isActive={idx === currentPageIdx}>
@@ -62,7 +75,11 @@ const PostsPaginationHandle = (props: {
             <PaginationItem>
               <PaginationNext
                 onClick={() =>
-                  setCurrentPageIdx(afterGroupIdx * NUM_VISIBLE_PAGES)
+                  router.push(
+                    `/posts?${generateQueryString({
+                      page: afterGroupIdx * NUM_VISIBLE_PAGES,
+                    })}`,
+                  )
                 }
               />
             </PaginationItem>

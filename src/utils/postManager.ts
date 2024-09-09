@@ -26,7 +26,7 @@ class PostManager {
   };
 
   private loadPosts = () => {
-    const basePath = POSTS_DIR;
+    const basePath = path.join(process.cwd(), POSTS_DIR);
     const languages = fs.readdirSync(basePath).filter((item) => {
       // languages are directory.
       return fs.statSync(path.join(basePath, item)).isDirectory();

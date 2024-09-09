@@ -25,3 +25,31 @@ export const convertLocaleToLanguage = (locale: string) => {
   console.error(`Not supported locale ${locale}.`);
   return LANGUAGE_ENGLISH;
 };
+
+export const calculatePageIdx = (
+  page: string | string[] | undefined,
+): number => {
+  if (page === undefined) return 0;
+  if (page instanceof Array) return 0;
+
+  const pageNum = Number(page);
+  if (isNaN(pageNum)) return 0;
+  if (!Number.isInteger(pageNum)) return 0;
+  return pageNum;
+};
+
+export const generateQueryString = (
+  params: Record<string, string | number | boolean | undefined>,
+) => {
+  const searchParams = new URLSearchParams();
+
+  // Iterate over the params object and append each key-value pair to the URLSearchParams
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined) {
+      searchParams.append(key, String(value));
+    }
+  });
+
+  // Convert URLSearchParams to a string
+  return searchParams.toString();
+};

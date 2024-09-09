@@ -43,7 +43,6 @@ export const generateMetadata = async ({
     return {};
   }
   const { title, description, created, tags } = post;
-  console.log(params);
   const postTitle = `${title} | ${REALBROLOG_NAME}`;
   return {
     title: postTitle,
