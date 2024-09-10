@@ -53,3 +53,21 @@ export const generateQueryString = (
   // Convert URLSearchParams to a string
   return searchParams.toString();
 };
+
+export const handleTagValueFromQueryString = (
+  tag: string | string[] | undefined,
+) => {
+  if (tag === undefined) return undefined;
+  if (tag instanceof Array) return tag[0];
+  return tag;
+};
+
+export const generatePostsPageUrl = (
+  pageIdx: number | undefined,
+  selectedTag: string | undefined,
+) => {
+  return `/posts?${generateQueryString({
+    page: pageIdx,
+    tag: selectedTag,
+  })}`;
+};

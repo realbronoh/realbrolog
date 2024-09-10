@@ -3,9 +3,13 @@ import { REALBROLOG_NAME } from '@/constants/misc';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from '@/constants/intl';
 import PostsView from '@/components/posts/PostsView';
-import { getPostManager } from '@/utils/postManager';
+import { getPostManager, PostManager } from '@/utils/postManager';
 import { Metadata } from 'next';
-import { calculatePageIdx, generateQueryString } from '@/utils/misc';
+import {
+  calculatePageIdx,
+  generatePostsPageUrl,
+  handleTagValueFromQueryString,
+} from '@/utils/misc';
 import { redirect } from '@/navigation';
 import { DEFAULT_NUM_POSTS_PER_PAGE } from '@/constants/post';
 
@@ -40,24 +44,18 @@ export const metadata: Metadata = {
 const PostsPage = (props: PostsPageProps) => {
   const {
     params: { locale },
-    searchParams: { page },
+    searchParams: { page, tag },
   } = props;
   unstable_setRequestLocale(locale);
   const currentPageIdx = calculatePageIdx(page);
+  const selectedTag = handleTagValueFromQueryString(tag);
   const posts = getPostManager().getPostByLocale(locale);
+  const tags = PostManager.getTagsFromPosts(posts);
+  const tagFilteredPosts = PostManager.filterPostsByTag(posts, selectedTag);
   const pagesLength =
-    Math.floor((posts.length - 1) / DEFAULT_NUM_POSTS_PER_PAGE) + 1;
+    Math.floor((tagFilteredPosts.length - 1) / DEFAULT_NUM_POSTS_PER_PAGE) + 1;
 
-  const isInvalidPageIdx = currentPageIdx < 0 || pagesLength <= currentPageIdx;
-  if (isInvalidPageIdx) {
-    redirect(
-      `/posts?${generateQueryString({
-        page: 0,
-      })}`,
-    );
-    return;
-  }
-  const visiblePosts = posts.filter((_, idx) => {
+  const visiblePosts = tagFilteredPosts.filter((_, idx) => {
     const firstPostIdxOfCurrentPage =
       currentPageIdx * DEFAULT_NUM_POSTS_PER_PAGE;
     const firstPostIdxOfNextPage =
@@ -65,11 +63,19 @@ const PostsPage = (props: PostsPageProps) => {
     return firstPostIdxOfCurrentPage <= idx && idx < firstPostIdxOfNextPage;
   });
 
+  const isInvalidPageIdx = currentPageIdx < 0 || pagesLength <= currentPageIdx;
+  if (isInvalidPageIdx) {
+    redirect(generatePostsPageUrl(0, selectedTag));
+    return;
+  }
+
   return (
     <PostsView
       posts={visiblePosts}
       currentPageIdx={currentPageIdx}
       pagesLength={pagesLength}
+      selectedTag={selectedTag}
+      tags={tags}
     />
   );
 };

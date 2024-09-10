@@ -6,12 +6,25 @@ import matter from 'gray-matter';
 import { DateTime } from 'luxon';
 import { DUMMY_POST_ID, MARKDOWN_EXT, POSTS_DIR } from '@/constants/post';
 
-class PostManager {
+export class PostManager {
   private _posts: Post[] = [];
 
   constructor() {
     this._posts = this.loadPosts();
   }
+
+  static getTagsFromPosts = (posts: Post[]) => {
+    const tagSet = new Set<string>();
+    posts.forEach((post) => {
+      post.tags.forEach((tag) => tagSet.add(tag));
+    });
+    return Array.from(tagSet).sort();
+  };
+
+  static filterPostsByTag = (posts: Post[], tag: string | undefined) => {
+    if (tag === undefined) return posts;
+    return posts.filter(({ tags }) => tags.includes(tag));
+  };
 
   public get posts() {
     return this._posts;

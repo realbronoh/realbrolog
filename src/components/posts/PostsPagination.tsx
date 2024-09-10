@@ -9,7 +9,7 @@ import {
   PaginationNext,
 } from '@/components/ui/pagination';
 import { useRouter } from '@/navigation';
-import { generateQueryString } from '@/utils/misc';
+import { generatePostsPageUrl } from '@/utils/misc';
 import React from 'react';
 
 const NUM_VISIBLE_PAGES = 5;
@@ -17,8 +17,9 @@ const NUM_VISIBLE_PAGES = 5;
 const PostsPaginationHandle = (props: {
   currentPageIdx: number;
   numPages: number;
+  selectedTag: string | undefined;
 }) => {
-  const { currentPageIdx, numPages } = props;
+  const { currentPageIdx, numPages, selectedTag } = props;
   const router = useRouter();
 
   const lastPageIdx = numPages - 1;
@@ -43,9 +44,10 @@ const PostsPaginationHandle = (props: {
               <PaginationPrevious
                 onClick={() =>
                   router.push(
-                    `/posts?${generateQueryString({
-                      page: currentGroupIdx * NUM_VISIBLE_PAGES - 1,
-                    })}`,
+                    generatePostsPageUrl(
+                      currentGroupIdx * NUM_VISIBLE_PAGES - 1,
+                      selectedTag,
+                    ),
                   )
                 }
               />
@@ -56,11 +58,7 @@ const PostsPaginationHandle = (props: {
           return (
             <PaginationItem
               onClick={() =>
-                router.push(
-                  `/posts?${generateQueryString({
-                    page: idx,
-                  })}`,
-                )
+                router.push(generatePostsPageUrl(idx, selectedTag))
               }
               key={`post-pagination-${idx}`}
             >
@@ -76,9 +74,10 @@ const PostsPaginationHandle = (props: {
               <PaginationNext
                 onClick={() =>
                   router.push(
-                    `/posts?${generateQueryString({
-                      page: afterGroupIdx * NUM_VISIBLE_PAGES,
-                    })}`,
+                    generatePostsPageUrl(
+                      afterGroupIdx * NUM_VISIBLE_PAGES,
+                      selectedTag,
+                    ),
                   )
                 }
               />
