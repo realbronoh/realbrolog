@@ -23,12 +23,12 @@ const PostCard = (props: { post: Post }) => {
           {/* todo: cut or make ellipsis over 2 line. */}
           {post.description}
         </p>
-        <p className="flex gap-4 items-center text-xs">
+        <div className="flex gap-4 items-center text-xs">
           <span>
             {formattedDateString} • {readingTimeMin} min read
           </span>
           <Tags post={post} />
-        </p>
+        </div>
       </div>
     </Link>
   );
