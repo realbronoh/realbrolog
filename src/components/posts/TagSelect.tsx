@@ -55,7 +55,7 @@ const TagSelect = (props: TagFilterProps) => {
           <DropdownMenuTrigger asChild className="focus:outline-none">
             <Button variant="ghost" className="h-auto p-1 ">
               <span className="flex items-center gap-0.5">
-                {<TagBadge tag={selectedTag} />}
+                {<TagBadge tag={selectedTag} inActive={true} />}
                 {open ? (
                   <ChevronUpIcon className="h-4 w-4" />
                 ) : (
@@ -71,7 +71,7 @@ const TagSelect = (props: TagFilterProps) => {
                 onSelect={() => handleTagSelect(tag)}
                 className="rounded-md px-2 py-1.5 focus:bg-accent focus:text-accent-foreground cursor-pointer"
               >
-                {<TagBadge tag={tag} />}
+                {<TagBadge tag={tag} inActive={true} />}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
