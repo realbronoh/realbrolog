@@ -11,6 +11,7 @@ import { notFound } from 'next/navigation';
 import { getPostManager } from '@/utils/postManager';
 import { Metadata } from 'next';
 import { REALBROLOG_BASE_URL } from '@/constants/seo';
+import GiscusComments from './GiscusComment';
 
 export const generateStaticParams = async () => {
   const paths: {
@@ -93,6 +94,7 @@ const PostPage = (props: PostPageProps) => {
       <article>
         <StyledMarkdown markdown={post.content} />
       </article>
+      <GiscusComments lang={locale} />
     </main>
   );
 };
