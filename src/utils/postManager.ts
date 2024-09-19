@@ -5,6 +5,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { DateTime } from 'luxon';
 import { DUMMY_POST_ID, MARKDOWN_EXT, POSTS_DIR } from '@/constants/post';
+import crypto from 'crypto';
 
 export class PostManager {
   private _posts: Post[] = [];
@@ -69,7 +70,8 @@ export class PostManager {
     const title = matterResult.data.title ?? '';
     const created = this.handleCreated(matterResult.data.created);
     const id =
-      (matterResult.data.id as string | undefined)?.toString() ?? DUMMY_POST_ID;
+      (matterResult.data.id as string | undefined)?.toString() ??
+      this.createDummyId(title);
     const post: Post = {
       lang,
       id,
@@ -81,6 +83,11 @@ export class PostManager {
       category: matterResult.data.category,
     };
     return post;
+  };
+
+  private createDummyId = (title: string) => {
+    const hash = crypto.createHash('sha256').update(title).digest('hex');
+    return `${DUMMY_POST_ID}-${hash.slice(0, 6)}`;
   };
 
   private readMarkdownFilesRecursively(dir: string): string[] {
