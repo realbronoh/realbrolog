@@ -1,5 +1,6 @@
 {
-  "about": {
-    "title": "hello"
+  "home": {
+    "title": "Home",
+    "description": "Home page of realbrolog: insights from realbro, an indie programmer who shares thoughts on programming, reading, and writing."
   }
 }

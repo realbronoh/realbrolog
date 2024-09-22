@@ -1,5 +1,6 @@
 {
-  "about": {
-    "title": "한글 테스트"
+  "home": {
+    "title": "홈",
+    "description": "realbrolog의 홈 페이지: 인디 개발자 realbro의 프로그래밍, 독서, 글쓰기에 대한 생각을 공유합니다."
   }
 }

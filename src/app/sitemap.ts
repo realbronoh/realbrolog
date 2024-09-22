@@ -8,20 +8,10 @@ const generateBasicLinks = () => {
     {
       url: `${BASE_URL}/en/home`,
       lastModified: new Date(),
-      alternates: {
-        languages: {
-          ko: `${BASE_URL}/ko/home`,
-        },
-      },
     },
     {
       url: `${BASE_URL}/ko/home`,
       lastModified: new Date(),
-      alternates: {
-        languages: {
-          en: `${BASE_URL}/en/home`,
-        },
-      },
     },
     {
       url: `${BASE_URL}/en/posts`,
