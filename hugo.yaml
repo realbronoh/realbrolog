@@ -53,6 +53,10 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/realbronoh"
+    - name: linkedIn
+      url: "https://www.linkedin.com/in/realbronoh"
+    - name: brunchStory
+      url: "https://brunch.co.kr/@realbronoh"
 
   homeInfoParams:
     Title: "Welcome to realbrolog"
