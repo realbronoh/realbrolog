@@ -21,7 +21,7 @@ params:
     - Math
     - Programming
     - Book Reviews
-  author: Jinhyung
+  math: true
 
   defaultTheme: dark # dark, light, auto
   disableThemeToggle: false
@@ -93,3 +93,20 @@ outputs:
 markup:
   highlight:
     noClasses: false
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - - \[
+              - \]
+            - - $$
+              - $$
+          inline:
+            - - \(
+              - \)
+            - - $
+              - $
