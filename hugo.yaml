@@ -1,7 +1,6 @@
 baseURL: "https://blog.realbro.dev/"
 languageCode: "en-us"
 title: "realbrolog"
-theme: "PaperMod"
 
 enableRobotsTXT: true
 buildDrafts: false
@@ -15,99 +14,21 @@ minify:
 
 params:
   env: production
-  title: realbrolog
   description: "Math, Programming, and Book Reviews"
   keywords:
     - Math
     - Programming
     - Book Reviews
   author: realbronoh
-  math: true
 
-  defaultTheme: dark # dark, light, auto
-  disableThemeToggle: false
-
-  ShowReadingTime: true
-  ShowShareButtons: false
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: true
-  ShowWordCount: true
-  ShowRssButtonInSectionTermList: true
-  UseHugoToc: true
-  disableSpecial1stPost: false
-  disableScrollToTop: false
-  comments: false
-  hidemeta: false
-  hideSummary: false
-  showtoc: true
-  tocopen: true
-
-  profileMode:
-    enabled: false
-    title: realbrolog
-    subtitle: ""
-    imageUrl: ""
-    imageWidth: 120
-    imageHeight: 120
-
-  socialIcons:
-    - name: github
-      url: "https://github.com/realbronoh"
-    - name: linkedIn
-      url: "https://www.linkedin.com/in/realbronoh"
-    - name: brunchStory
-      url: "https://brunch.co.kr/@realbronoh"
-
-  homeInfoParams:
-    Title: "Welcome to realbrolog"
-    Content: "Math, Programming, and Book Reviews"
-
-menu:
-  main:
-    - identifier: posts
-      name: Posts
-      url: /posts/
-      weight: 10
-
-    - identifier: tags
-      name: Tags
-      url: /tags/
-      weight: 20
-
-    # - identifier: categories
-    #   name: Categories
-    #   url: /categories/
-    #   weight: 30
-
-    - identifier: search
-      name: Search
-      url: /search/
-      weight: 40
+taxonomies:
+  tag: tags
 
 outputs:
   home:
     - HTML
     - RSS
-    - JSON
 
 markup:
   highlight:
     noClasses: false
-  goldmark:
-    renderer:
-      unsafe: true
-    extensions:
-      passthrough:
-        enable: true
-        delimiters:
-          block:
-            - - \[
-              - \]
-            - - $$
-              - $$
-          inline:
-            - - \(
-              - \)
-            - - $
-              - $

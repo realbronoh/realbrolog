@@ -1,0 +1,16 @@
+<header>
+  <nav>
+    <a href="{{ .Site.Home.Permalink }}">{{ .Site.Title }}</a>
+    {{ with .Site.GetPage "/posts" }}<a href="{{ .Permalink }}">{{ i18n "posts" }}</a>{{ end }}
+    {{ with .Site.GetPage "/tags" }}<a href="{{ .Permalink }}">{{ i18n "tags" }}</a>{{ end }}
+    {{ range .Sites }}
+      {{ if ne .Language.Lang $.Site.Language.Lang }}
+        {{ with where $.Translations "Language.Lang" .Language.Lang }}
+          <a href="{{ (index . 0).Permalink }}">{{ (index . 0).Language.LanguageName }}</a>
+        {{ else }}
+          <a href="{{ .Home.Permalink }}">{{ .Language.LanguageName }}</a>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </nav>
+</header>

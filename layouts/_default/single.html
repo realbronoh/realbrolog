@@ -1,0 +1,14 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ if not .Date.IsZero }}
+  <p><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></p>
+  {{ end }}
+  {{ with .GetTerms "tags" }}
+  <p>
+    {{ range . }}<a href="{{ .Permalink }}">#{{ .Title }}</a> {{ end }}
+  </p>
+  {{ end }}
+  {{ .Content }}
+</article>
+{{ end }}

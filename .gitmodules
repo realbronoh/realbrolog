@@ -1,7 +1,3 @@
-[submodule "themes/PaperMod"]
-	path = themes/PaperMod
-		url = https://github.com/realbronoh/hugo-PaperMod.git
-		branch = realbro
 [submodule "content/posts"]
 	path = content/posts
 	url = git@github.com:realbronoh/dev-posts.git

@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ .Content }}
+<ul>
+  {{ $posts := (.Site.GetPage "/posts") }}
+  {{ with $posts }}
+    {{ range first 10 .Pages }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      {{ if not .Date.IsZero }} — <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
+    </li>
+    {{ end }}
+  {{ end }}
+</ul>
+{{ end }}

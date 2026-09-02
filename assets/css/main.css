@@ -1,0 +1,33 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+header nav a {
+  margin-right: 1rem;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+code {
+  font-family: ui-monospace, monospace;
+}
+
+img {
+  max-width: 100%;
+}
+
+footer {
+  margin-top: 3rem;
+  color: gray;
+}
