@@ -1,4 +1,4 @@
 [submodule "content/posts"]
-	path = content/posts
+	path = content/en/posts
 	url = git@github.com:realbronoh/dev-posts.git
 	branch = main

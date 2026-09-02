@@ -1,6 +1,19 @@
 baseURL: "https://blog.realbro.dev/"
-languageCode: "en-us"
 title: "realbrolog"
+
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+languages:
+  en:
+    languageName: "English"
+    languageCode: "en-us"
+    weight: 1
+    contentDir: content/en
+  ko:
+    languageName: "한국어"
+    languageCode: "ko"
+    weight: 2
+    contentDir: content/ko
 
 enableRobotsTXT: true
 buildDrafts: false
