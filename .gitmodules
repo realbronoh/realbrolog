@@ -1,6 +1,6 @@
 [submodule "posts-en"]
 	path = posts-en
-	url = git@github.com:realbronoh/dev-posts.git
+	url = git@github.com:realbronoh/realbrolog-posts-en.git
 	branch = main
 [submodule "posts-ko"]
 	path = posts-ko
