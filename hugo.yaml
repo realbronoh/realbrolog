@@ -8,12 +8,25 @@ languages:
     languageName: "English"
     languageCode: "en-us"
     weight: 1
-    contentDir: content/en
   ko:
     languageName: "한국어"
     languageCode: "ko"
     weight: 2
-    contentDir: content/ko
+
+module:
+  mounts:
+    - source: content/en
+      target: content
+      lang: en
+    - source: posts-en
+      target: content/posts
+      lang: en
+    - source: content/ko
+      target: content
+      lang: ko
+    - source: posts-ko
+      target: content/posts
+      lang: ko
 
 enableRobotsTXT: true
 buildDrafts: false

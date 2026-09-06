@@ -1,8 +1,8 @@
-[submodule "content/posts"]
-	path = content/en/posts
+[submodule "posts-en"]
+	path = posts-en
 	url = git@github.com:realbronoh/dev-posts.git
 	branch = main
-[submodule "content/ko/posts"]
-	path = content/ko/posts
+[submodule "posts-ko"]
+	path = posts-ko
 	url = git@github.com:realbronoh/realbrolog-posts-ko.git
 	branch = main
