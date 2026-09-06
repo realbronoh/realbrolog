@@ -1,3 +1,3 @@
 ---
-title: "포스트"
+title: "Posts"
 ---
