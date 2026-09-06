@@ -46,6 +46,7 @@ params:
     - Programming
     - Book Reviews
   author: realbronoh
+  math: true
 
 taxonomies:
   tag: tags
@@ -58,3 +59,18 @@ outputs:
 markup:
   highlight:
     noClasses: false
+  goldmark:
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - - \[
+              - \]
+            - - $$
+              - $$
+          inline:
+            - - \(
+              - \)
+            - - $
+              - $
