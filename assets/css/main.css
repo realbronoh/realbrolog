@@ -19,8 +19,14 @@ pre {
   padding: 1rem;
 }
 
+pre,
 code {
   font-family: ui-monospace, monospace;
+  font-size: 0.875em;
+}
+
+pre code {
+  font-size: inherit;
 }
 
 img {
