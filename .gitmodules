@@ -2,3 +2,7 @@
 	path = content/en/posts
 	url = git@github.com:realbronoh/dev-posts.git
 	branch = main
+[submodule "content/ko/posts"]
+	path = content/ko/posts
+	url = git@github.com:realbronoh/realbrolog-posts-ko.git
+	branch = main
